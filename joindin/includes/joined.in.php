@@ -28,7 +28,7 @@ format: set this to html or json to specify what format the response should be i
     function __construct() {
     }
 
-    private function $_request() {
+    private function _request() {
         $target = $this->_api_target . $this->_method . '/';
 
         if ($this->_target) {

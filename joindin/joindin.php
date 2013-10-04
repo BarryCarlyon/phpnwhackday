@@ -10,6 +10,8 @@ Version: 0.0.1
 
 class joindin {
     function __construct() {
+        include(dirname(__FILE__) . '/includes/joined.in.php');
+
         add_action('widgets_init', array($this, 'widgets_init'));
     }
 
