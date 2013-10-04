@@ -40,6 +40,8 @@ format: set this to html or json to specify what format the response should be i
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Barrys Joindin API Requester');
 
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+
         $headers = array(
             'Accept: application/json'
         );
@@ -55,6 +57,16 @@ format: set this to html or json to specify what format the response should be i
         return $this;
     }
 
+    /**
+    util
+    */
+    function getResponse() {
+        return $this->$_response;
+    }
+
+    /**
+    functions
+    */
     function events() {
         $this->_method ='events';
 

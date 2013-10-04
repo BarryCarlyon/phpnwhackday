@@ -23,8 +23,8 @@ class Joind_In_Widget extends WP_Widget {
         echo '<h2>Joind In</h2>';
 
         // @Todo: caching
-        $data = $this->_api->getEvent($id);
-        print_r($data);
+        $data = $this->_api->getEvent($id)->getResponse();
+        echo print_r($data, true);
 
         echo $after_widget;
     }
