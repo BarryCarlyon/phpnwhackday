@@ -24,7 +24,7 @@ class Joind_In_Widget extends WP_Widget {
 
         // @Todo: caching
         $data = $this->_api->getEvent($id);
-        print_r($data):
+        print_r($data);
 
         echo $after_widget;
     }

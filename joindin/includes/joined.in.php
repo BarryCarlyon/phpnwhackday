@@ -49,13 +49,13 @@ format: set this to html or json to specify what format the response should be i
         $i = curl_getinfo($ch);
         curl_close($ch);
 
-        $this->_response($r);
-        $this->_info($r):
+        $this->_response = $r;
+        $this->_info = $i;
 
         return $this;
     }
 
-    function events()) {
+    function events() {
         $this->_method ='events';
 
     }
@@ -64,14 +64,14 @@ format: set this to html or json to specify what format the response should be i
         $this->_emthod = 'events';
         $this->_target = $id;
 
-        $this->_reqest();
+        $this->_request();
     }
 
     function getEventTalks($id) {
         $this->_emthod = 'events';
         $this->_target = $id . '/talks';
 
-        $this->_reqest();
+        $this->_request();
 
         return $this;
     }
