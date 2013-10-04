@@ -2,7 +2,7 @@
 
 
 class joind_in_api {
-    private $_api_target = 'https://api.joind.in/v2/';
+    private $_api_target = 'https://api.joind.in/v2.1/';
     private $_method = '';
 
     private $_response = '';
@@ -40,7 +40,7 @@ format: set this to html or json to specify what format the response should be i
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_USERAGENT, 'Barrys Joindin API Requester');
 
-        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+//        curl_setopt($ch, CURLOPT_VERBOSE, 1);
 
         $headers = array(
             'Accept: application/json'
@@ -60,8 +60,8 @@ format: set this to html or json to specify what format the response should be i
     /**
     util
     */
-    function getResponse() {
-        return $this->$_response;
+    function getResponse($array = false) {
+        return json_decode($this->_response, $array);
     }
 
     /**
@@ -73,14 +73,21 @@ format: set this to html or json to specify what format the response should be i
     }
 
     function getEvent($id) {
-        $this->_emthod = 'events';
+        $this->_method = 'events';
         $this->_target = $id;
 
         $this->_request();
+
+        // return that what was reuqested
+        $events = $this->getResponse();
+        $event = $events->events[0];
+        return $event;
+
+        return $this;
     }
 
     function getEventTalks($id) {
-        $this->_emthod = 'events';
+        $this->_method = 'events';
         $this->_target = $id . '/talks';
 
         $this->_request();

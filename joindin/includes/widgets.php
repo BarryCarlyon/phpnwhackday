@@ -20,11 +20,47 @@ class Joind_In_Widget extends WP_Widget {
         }
 
         echo $before_widget;
-        echo '<h2>Joind In</h2>';
+//        echo '<h2>Joind In</h2>';
 
         // @Todo: caching
-        $data = $this->_api->getEvent($id)->getResponse();
-        echo print_r($data, true);
+        $event = $this->_api->getEvent($event_id);//->getResponse(false);
+        // I expect only 1 event
+
+/**
+temp style hack
+*/
+?>
+<style type="text/css">
+    .joindin_event_icon {
+        float: left;
+        width: 75px;
+    }
+</style>
+<?php
+
+        // if icon
+        echo '<img src="https://joind.in/inc/img/event_icons/' . $event->icon . '" class="joindin_event_icon/>';
+
+        echo '<h3 class="joindin_event_name">
+            <a href="' . $event->href . '">
+            ' . $event->name . '
+            </a>
+            </h3>';
+        $tos = strtotime($event->start_date);
+        echo '<p class="joindin_event_start">' . date(get_option('date_format'), $tos) . '</p>';
+
+        echo '<p class="joindin_event_desc">' . $event->description . '</p>';
+
+        echo '<p>';
+        echo '<span class="joindin_on_website">
+            <a href="' . $event->href  . '">Website</a>
+        </span>';
+        echo '<span class="joindin_on_joindin">
+            <a href="' . $event->humane_website_uri  . '">On Joind.in</a>
+        </span>';
+        echo '</p>';
+
+//        echo print_r($event, true);
 
         echo $after_widget;
     }
