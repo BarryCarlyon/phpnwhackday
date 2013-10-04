@@ -3,6 +3,7 @@
 
 class joind_in_api {
     private $_api_target = 'https://api.joind.in/v2.1/';
+//    private $_api_target = 'http://joinedinhackery.local/v2.1/';
     private $_method = '';
 
     private $_response = '';
@@ -34,7 +35,7 @@ format: set this to html or json to specify what format the response should be i
         if ($this->_target) {
             $target .= $this->_target;
         }
-
+//echo $target;
         // @todo: args
         $ch = curl_init($target);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
